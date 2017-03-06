@@ -1,0 +1,6 @@
+{
+  "extends": "eslint:recommended", // Ajoute quelques règles par défaut
+  "rules": {
+    "quotes": [2, "single"] // On désactive cette règle car notre projet utilise `alert()`
+  }
+}
