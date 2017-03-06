@@ -63,7 +63,7 @@ gulp.task('scripts', function() {
         .pipe(gif(options.lint, eslint.format()))
 		.pipe(gif(options.maps, maps.write('./')))
 		.pipe(gulp.dest(options.dist + "/scripts"))
-		.pipe(connect.reload())//To reload the browser
+		.pipe(connect.reload());//To reload the browser
 });
 
 //The styles task generate css with all the sass files, and create maps files if the option is set to true
@@ -73,7 +73,7 @@ gulp.task('styles', function() {
 		.pipe(sass())
 		.pipe(gif(options.maps, maps.write('./')))
 		.pipe(gulp.dest(options.dist + "/styles"))
-		.pipe(connect.reload())//To reload the browser
+		.pipe(connect.reload());//To reload the browser
 });
 
 //The images function will optimize all images
@@ -85,13 +85,13 @@ gulp.task('images', function() {
 
 //This task will delete all files in the dist folder
 gulp.task('clean', function() {
-	del([options.dist]+'/*')
+	del([options.dist]+'/*');
 });
 
 //this task will execute all the tasks to build the dist folder
 gulp.task('html', ['scripts','styles', 'images'], function() {
 	return gulp.src(options.src + '/*.html')
-		.pipe(gulp.dest(options.dist))
+		.pipe(gulp.dest(options.dist));
 });
 
 //this task will clean "dist" folder, then execute "html"
@@ -110,7 +110,7 @@ gulp.task('serve', ['build'], function() {
 gulp.task('watch', ['serve'], function() {
   gulp.watch(options.src + '/js/**/*.js', ['scripts']);
   gulp.watch(options.src + '/sass/**/*.{scss,sass}', ['styles']);
-})
+});
 
 //This is the default task, to let the user type : "gulp", instead of "gulp build"
 gulp.task('default', [ 'build' ]);
