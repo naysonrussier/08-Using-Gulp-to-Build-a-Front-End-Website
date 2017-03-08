@@ -33,7 +33,8 @@ var gulp = require('gulp'),
      del = require('del'),
  connect = require('gulp-connect'),
   eslint = require('gulp-eslint'),
-     gif = require('gulp-if');
+     gif = require('gulp-if'),
+  rename = require('gulp-rename');
  
 /*
 Options for the app :
@@ -69,8 +70,9 @@ gulp.task('scripts', function() {
 //The styles task generate css with all the sass files, and create maps files if the option is set to true
 gulp.task('styles', function() {
 	return gulp.src(options.src + "/sass/global.scss")
+		.pipe(rename('all.min.css'))
 		.pipe(gif(options.maps, maps.init()))
-		.pipe(sass())
+		.pipe(sass({outputStyle: 'compressed'}))
 		.pipe(gif(options.maps, maps.write('./')))
 		.pipe(gulp.dest(options.dist + "/styles"))
 		.pipe(connect.reload());//To reload the browser
